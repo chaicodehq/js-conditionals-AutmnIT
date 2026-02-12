@@ -32,4 +32,30 @@
  */
 export function calculateCoffeePrice(size, type, extras = {}) {
   // Your code here
+  const s = ["small", "medium", "large"];
+  const t = ["regular", "latte", "cappuccino", "mocha"];
+  const price = {
+    small: 3.0,
+    medium: 4.0,
+    large: 5.0,
+    regular: 0.0,
+    latte: 1.0,
+    cappuccino: 1.5,
+    mocha: 2.0,
+    whippedCream: 0.5,
+    extraShot: 0.75,
+  };
+
+  if (!s.includes(size) || !t.includes(type)) return -1;
+  let cost = Number((price[size] + price[type]).toFixed(2)); //we can't use dot notation, when we deal with variable key
+
+  if(!extras) return cost;
+
+  for (const key in extras) {
+    if (extras[key]){
+      cost += price[key];
+    }
+  }
+  return Number(cost.toFixed(2));
+  
 }
